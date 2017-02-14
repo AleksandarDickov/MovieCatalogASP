@@ -13,7 +13,10 @@ namespace MovieCatalog.Controllers
 
         public ActionResult Index()
         {
-            var model = _db.Movies.ToList();
+            var model =
+                from r in _db.Movies
+                orderby r.Name
+                select r;
 
             return View(model);
         }
