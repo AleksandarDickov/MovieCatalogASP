@@ -11,9 +11,10 @@ namespace MovieCatalog.Controllers
     {
         MovieContext _db = new MovieContext();
 
-        public ActionResult Index()
+        public ActionResult Index(string searchTerm = null)
         {
             var model =
+
                 from r in _db.Movies
                 orderby r.Name
                 select r;
