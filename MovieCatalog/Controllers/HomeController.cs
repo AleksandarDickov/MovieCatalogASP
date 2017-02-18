@@ -14,10 +14,9 @@ namespace MovieCatalog.Controllers
         public ActionResult Index(string searchTerm = null)
         {
             var model =
-
-                from r in _db.Movies
-                orderby r.Name
-                select r;
+            from r in _db.Movies
+            orderby r.Name
+            select r;
 
             return View(model);
         }
