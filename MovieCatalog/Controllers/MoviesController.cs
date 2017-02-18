@@ -89,6 +89,13 @@ namespace MovieCatalog.Controllers
             return View(movie);
         }
 
+        [HttpPost, ActionName("Search")]
+        public ActionResult Search(string name)
+        {
+            var message = Server.HtmlEncode(name);
+            return View(db.Movies.ToList());
+        }
+
         // GET: Movies/Delete/5
         public ActionResult Delete(int? id)
         {
