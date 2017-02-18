@@ -25,7 +25,7 @@ namespace MovieCatalog.Controllers
         public ActionResult About()
         {
             var model = new AboutModel();
-            model.Name = "Aca";
+            model.Name = "Aca, Ana, Jelena i Zdravka";
             model.Location = "Novi Sad, Serbia";
 
             return View(model);
