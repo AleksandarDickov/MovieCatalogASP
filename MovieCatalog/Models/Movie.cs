@@ -21,7 +21,7 @@ namespace MovieCatalog.Models
 
         [Required]
         [DataType(DataType.Date)]
-        //[Range(typeof(DateTime), "01-01-1920", "01-01-2020", ErrorMessage ="Date is out of Range")]
+        [Range(typeof(DateTime), "01-01-1920", "01-01-2020", ErrorMessage ="Date is out of Range")]
         [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ReleaseDate { get; set; }
 

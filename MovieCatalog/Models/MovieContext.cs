@@ -8,7 +8,7 @@ namespace MovieCatalog.Models
 {
     public class MovieContext : DbContext
     {
-        public MovieContext() : base()
+        public MovieContext() : base("DefaultConnection")
         {
             Database.SetInitializer<MovieContext>(new DropCreateDatabaseIfModelChanges<MovieContext>());
         }
