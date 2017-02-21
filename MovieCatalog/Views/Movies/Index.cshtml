@@ -6,7 +6,8 @@
 
 <h2>Index</h2>
 
-<form method="get">
+<form method="get" action="@Url.Action("Index")"
+      data-otf.ajax="true" data-otf.target="#movieList">
 
     @Html.TextBox("SearchString") <br />
     <input type="submit" value="Search" />
@@ -15,12 +16,9 @@
 
 <p>
     @Html.ActionLink("Create New", "Create")
-    @using (Html.BeginForm())
-    {
+    
     <p>
     </p>
-    }
-    
 </p>
 <table class="table">
     <tr>
