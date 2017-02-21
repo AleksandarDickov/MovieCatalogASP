@@ -18,8 +18,8 @@ namespace MovieCatalog.Controllers
         public ActionResult Index(string searchString)
         {
             {
-                var movies = from m in db.Movies
-                             select m;
+                var movies = from r in db.Movies
+                             select r;
 
                 if (!String.IsNullOrEmpty(searchString))
                 {
