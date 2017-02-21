@@ -7,12 +7,20 @@
 <h2>Index</h2>
 
 <form method="get">
-    <input type="search" name="searchTerm"/>
-    <input type="submit" value="Search Movie" />
+
+    @Html.TextBox("SearchString") <br />
+    <input type="submit" value="Search" />
+
 </form>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+    @using (Html.BeginForm())
+    {
+    <p>
+    </p>
+    }
+    
 </p>
 <table class="table">
     <tr>

@@ -15,9 +15,23 @@ namespace MovieCatalog.Controllers
         private MovieContext db = new MovieContext();
 
         // GET: Movies
-        public ActionResult Index()
+        public ActionResult Index(string searchString)
         {
-            return View(db.Movies.ToList());
+            {
+                var movies = from m in db.Movies
+                             select m;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    movies = movies.Where(s => s.Name.Contains(searchString));
+                }
+
+                return View(movies);
+            }
+
+
+
+            //return View(db.Movies.ToList());
         }
 
         // GET: Movies/Details/5
@@ -89,12 +103,12 @@ namespace MovieCatalog.Controllers
             return View(movie);
         }
 
-        [HttpPost, ActionName("Search")]
-        public ActionResult Search(string name)
-        {
-            var message = Server.HtmlEncode(name);
-            return View(db.Movies.ToList());
-        }
+        //[HttpPost, ActionName("Search")]
+        //public ActionResult Search(string name)
+        //{
+        //    var message = Server.HtmlEncode(name);
+        //    return View(db.Movies.ToList());
+        //}
 
         // GET: Movies/Delete/5
         public ActionResult Delete(int? id)
