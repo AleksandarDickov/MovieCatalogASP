@@ -25,13 +25,15 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Director)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            @*@Html.DisplayNameFor(model => model.ReleaseDate)*@
+            @Html.ActionLink("ReleaseDate", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Genre)
