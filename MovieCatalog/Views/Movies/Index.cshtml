@@ -24,17 +24,19 @@
     <tr>
         <th>
             @*@Html.DisplayNameFor(model => model.Name)*@
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.DateSortParm })
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Director)
+            @*@Html.DisplayNameFor(model => model.Director)*@
+            @Html.ActionLink("Director", "Index", new { sortOrder = ViewBag.DirectorSortParm })
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.ReleaseDate)*@
-            @Html.ActionLink("ReleaseDate", "Index", new { sortOrder = ViewBag.DateSortParm })
+            @Html.ActionLink("ReleaseDate", "Index", new { sortOrder = ViewBag.ReleaseDateSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Genre)
+            @*@Html.DisplayNameFor(model => model.Genre)*@
+            @Html.ActionLink("Genre", "Index", new { sortOrder = ViewBag.GenreSortParm })
         </th>
         <th></th>
     </tr>

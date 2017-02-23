@@ -16,18 +16,37 @@ namespace MovieCatalog.Controllers
 
         // GET: Movies
 
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchString , string sortOrder)
         {
-            {
-                ViewBag.NameSortParm = String.IsNullOrEmpty(searchString) ? "name_desc" : "";
-                ViewBag.DateSortParm = searchString == "ReleaseDate" ? "date_desc" : "ReleaseDate";
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.GenreSortParm = String.IsNullOrEmpty(sortOrder) ? "genre_desc" : "";
+                ViewBag.DirectorSortParm = String.IsNullOrEmpty(sortOrder) ? "director_desc" : "";
+                ViewBag.ReleaseDateSortParm = sortOrder == "ReleaseDate" ? "date_desc" : "ReleaseDate";
                 var movies = from m in db.Movies select m;
-                switch(searchString)
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    movies = movies.Where(s => s.Name.StartsWith(searchString));
+                }
+
+                switch (sortOrder)
                 {
                     case "name_desc":
                         movies = movies.OrderByDescending(s => s.Name);
                         break;
-                    case "Date":
+                    case "director_desc":
+                        movies = movies.OrderByDescending(s => s.Director);
+                        break;
+                    case "Director":
+                        movies = movies.OrderBy(s => s.Director);
+                        break;
+                    case "genre_desc":
+                        movies = movies.OrderByDescending(s => s.Genre);
+                        break;
+                    case "Genre":
+                        movies = movies.OrderBy(s => s.Genre);
+                        break;
+                    case "ReleaseDate":
                         movies = movies.OrderBy(s => s.ReleaseDate);
                         break;
                     case "date_desc":
@@ -37,26 +56,10 @@ namespace MovieCatalog.Controllers
                         movies = movies.OrderBy(s => s.Name);
                         break;
                 }
-                //return View(movies.ToList());
             
-            
-                //var movies = from m in db.Movies
-                //             select m;
-
-                if (!String.IsNullOrEmpty(searchString))
-                {
-                    movies = movies.Where(s => s.Name.Contains(searchString));
-                }
-
-                return View(movies.ToList());
-            }
-
-
-
-            //return View(db.Movies.ToList());
+            return View(movies.ToList());
         }
 
-        // GET: Movies/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
