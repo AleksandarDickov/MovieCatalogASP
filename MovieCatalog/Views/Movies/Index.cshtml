@@ -6,24 +6,30 @@
 
 <h2>Index</h2>
 
-<form method="get">
-    <input type="search" name="searchTerm"/>
-    <input type="submit" value="Search Movie" />
+<form method="get" action="@Url.Action("Index")"
+      data-otf.ajax="true" data-otf.target="#movieList">
+
+    @Html.TextBox("SearchString") <br />
+    <input type="submit" value="Search" />
+
 </form>
 
 <p>
     @Html.ActionLink("Create New", "Create")
+
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @*@Html.DisplayNameFor(model => model.Name)*@
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Director)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ReleaseDate)
+            @*@Html.DisplayNameFor(model => model.ReleaseDate)*@
+            @Html.ActionLink("ReleaseDate", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Genre)

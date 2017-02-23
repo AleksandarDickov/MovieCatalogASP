@@ -15,9 +15,45 @@ namespace MovieCatalog.Controllers
         private MovieContext db = new MovieContext();
 
         // GET: Movies
-        public ActionResult Index()
+
+        public ActionResult Index(string searchString)
         {
-            return View(db.Movies.ToList());
+            {
+                ViewBag.NameSortParm = String.IsNullOrEmpty(searchString) ? "name_desc" : "";
+                ViewBag.DateSortParm = searchString == "ReleaseDate" ? "date_desc" : "ReleaseDate";
+                var movies = from m in db.Movies select m;
+                switch(searchString)
+                {
+                    case "name_desc":
+                        movies = movies.OrderByDescending(s => s.Name);
+                        break;
+                    case "Date":
+                        movies = movies.OrderBy(s => s.ReleaseDate);
+                        break;
+                    case "date_desc":
+                        movies = movies.OrderByDescending(s => s.ReleaseDate);
+                        break;
+                    default:
+                        movies = movies.OrderBy(s => s.Name);
+                        break;
+                }
+                //return View(movies.ToList());
+            
+            
+                //var movies = from m in db.Movies
+                //             select m;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    movies = movies.Where(s => s.Name.Contains(searchString));
+                }
+
+                return View(movies.ToList());
+            }
+
+
+
+            //return View(db.Movies.ToList());
         }
 
         // GET: Movies/Details/5
@@ -89,12 +125,12 @@ namespace MovieCatalog.Controllers
             return View(movie);
         }
 
-        [HttpPost, ActionName("Search")]
-        public ActionResult Search(string name)
-        {
-            var message = Server.HtmlEncode(name);
-            return View(db.Movies.ToList());
-        }
+        //[HttpPost, ActionName("Search")]
+        //public ActionResult Search(string name)
+        //{
+        //    var message = Server.HtmlEncode(name);
+        //    return View(db.Movies.ToList());
+        //}
 
         // GET: Movies/Delete/5
         public ActionResult Delete(int? id)
