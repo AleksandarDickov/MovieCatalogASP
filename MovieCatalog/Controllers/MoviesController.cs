@@ -26,7 +26,7 @@ namespace MovieCatalog.Controllers
 
                 if (!String.IsNullOrEmpty(searchString))
                 {
-                    movies = movies.Where(s => s.Name.StartsWith(searchString));
+                    movies = movies.Where(s => s.Name.StartsWith(searchString) || s.Genre.StartsWith(searchString));
                 }
 
                 switch (sortOrder)
