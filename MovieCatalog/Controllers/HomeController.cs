@@ -13,6 +13,7 @@ namespace MovieCatalog.Controllers
     {
         MovieContext _db = new MovieContext();
 
+       
         public ActionResult Index(string searchTerm = null)
         {
             var model =
@@ -23,6 +24,7 @@ namespace MovieCatalog.Controllers
             return View(model);
         }
 
+       
         public ActionResult About()
         {
             var model = new AboutModel();
