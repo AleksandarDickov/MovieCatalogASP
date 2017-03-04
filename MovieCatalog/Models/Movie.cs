@@ -21,9 +21,10 @@ namespace MovieCatalog.Models
 
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [ValidateDateRange]
         //[Range(typeof(DateTime), "01/01/1920", "01/01/2020", ErrorMessage = "Value for {0} must be between {1} and {2}")]
-        //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
+
         public DateTime ReleaseDate { get; set; }
 
         [Required]

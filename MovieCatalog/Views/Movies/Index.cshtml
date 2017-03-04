@@ -7,18 +7,32 @@
 <h2>INDEX</h2>
 
 <form method="get" action="@Url.Action("Index")"
-      data-otf.ajax="true" data-otf.target="#movieList">
+     data-ajax-update="#movieList" data-otf-ajax="true" data-otf-target="#movieList">
 
-    @Html.TextBox("SearchString") <br />
-    <input type="submit" value="Search" />
+    <p>
+        @Html.TextBox("SearchString") <br />
+    </p>
 
+    <p>
+        <input type="submit" value="Search" />
+    </p>
 </form>
+
+@using (Ajax.BeginForm(new AjaxOptions()
+{
+    HttpMethod = "get",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "movieList"
+}))
+{
+
+}
 
 <p>
     @Html.ActionLink("Create New", "Create")
 
 </p>
-<table class="table">
+<table class="table" id="movieList">
     <tr>
         <th>
             @*@Html.DisplayNameFor(model => model.Name)*@
@@ -36,9 +50,7 @@
             @*@Html.DisplayNameFor(model => model.Genre)*@
             @Html.ActionLink("Genre", "Index", new { sortOrder = ViewBag.GenreSortParm })
         </th>
-        <th></th>
     </tr>
-
 
 @foreach (var item in Model) {
     <tr>
