@@ -16,8 +16,9 @@ namespace MovieCatalog.Controllers
 
         // GET: Movies
 
-        public ActionResult Index(string searchString, string sortOrder)
+        public ActionResult Index(string searchString, string sortOrder, string currentFilter)
         {
+            ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = sortOrder == "Name_asc" ? "Name_desc" : "Name_asc";
             ViewBag.GenreSortParm = sortOrder == "Genre_asc" ? "Genre_desc" : "Genre_asc";
             ViewBag.DirectorSortParm = sortOrder == "Director_asc" ? "Director_desc" : "Director_asc";
@@ -27,14 +28,17 @@ namespace MovieCatalog.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
+                //searchString = currentFilter;
+                ViewBag.CurrentFilter = searchString;
                 movies = movies.Where(s => s.Name.StartsWith(searchString) || s.Genre.StartsWith(searchString));
             }
             
             if (Request.IsAjaxRequest())
             {
-                var a = PartialView("_Movie", movies);
-                return a;
+                return PartialView("_Movie", movies);
+                
             }
+           
 
             switch (sortOrder)
             {

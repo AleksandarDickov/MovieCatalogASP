@@ -2,13 +2,21 @@
 
 <table class="table" id="movieList">
     <tr>
+
+        @*@using (Html.BeginForm("Index", "Home", FormMethod.Get))
+        {
+            <p>
+                Find @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+            </p>
+        }*@
         <th>
             @*@Html.DisplayNameFor(model => model.Name)*@
-            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @*@Html.ActionLink("Name", "Index", Request.QueryString.ToString("sortOrder", (string)ViewBag.NameSortParm))*@
+            @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, searchString = ViewBag.CurrentFilter })
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.Director)*@
-            @Html.ActionLink("Director", "Index", new { sortOrder = ViewBag.DirectorSortParm })
+            @Html.ActionLink("Director", "Index", new { sortOrder = ViewBag.DirectorDateSortParm })
         </th>
         <th>
             @*@Html.DisplayNameFor(model => model.ReleaseDate)*@
