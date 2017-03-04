@@ -11,31 +11,31 @@ $(function () {
         };
 
         $.ajax(options).done(function (data) {
-            var $target = $($form.attr("data-otf.target"));
+            var $target = $($form.attr("data-otf-target"));
             $target.replaceWith(data);
         });
         return false;
     };
 
-    $("form[data-otf.ajax='true']").submit(ajaxFormSubmit);
+    $("form[data-otf-ajax='true']").submit(ajaxFormSubmit);
 
    
 });
 
-var getPage = function () {
-    var $a = $(this);
+//var getPage = function () {
+//    var $a = $(this);
 
-    var options = {
-        url: $a.attr("href"),
-        type: "get"
-    };
+//    var options = {
+//        url: $a.attr("href"),
+//        type: "get"
+//    };
 
-    $.ajax(options).done(function (data) {
-        var target = $a.parents("div.pagedList").attr("data-otf.target");
-        $target.replaceWith(data);
-    });
-    return false;
+//    $.ajax(options).done(function (data) {
+//        var target = $a.parents("div.pagedList").attr("data-otf.target");
+//        $target.replaceWith(data);
+//    });
+//    return false;
 
-    $(".main-content").on("Click", ".pageList a", getPage);
+//    $(".main-content").on("Click", ".pageList a", getPage);
 
-}
+//}

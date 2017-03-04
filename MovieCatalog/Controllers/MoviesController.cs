@@ -22,11 +22,18 @@ namespace MovieCatalog.Controllers
             ViewBag.GenreSortParm = sortOrder == "Genre_asc" ? "Genre_desc" : "Genre_asc";
             ViewBag.DirectorSortParm = sortOrder == "Director_asc" ? "Director_desc" : "Director_asc";
             ViewBag.ReleaseDateSortParm = sortOrder == "Date_asc" ? "Date_desc" : "Date_asc";
+
             var movies = from m in db.Movies select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Name.StartsWith(searchString) || s.Genre.StartsWith(searchString));
+            }
+            
+            if (Request.IsAjaxRequest())
+            {
+                var a = PartialView("_Movie", movies);
+                return a;
             }
 
             switch (sortOrder)
@@ -58,7 +65,7 @@ namespace MovieCatalog.Controllers
                     break;
             }
 
-            return View(movies.ToList());
+            return View(movies);
         }
 
         public ActionResult Details(int? id)
